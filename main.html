@@ -2,22 +2,29 @@
 <html>   
 <head>
    <meta charset="UTF-8">      
+   <link href="styles.css" rel="stylesheet">
 </head>
 
 <body>
- 
+   <!-- Div do botão -->
    <div id="controle">
       <button id="botaoCarregar">Carregar cerveja</button>
    </div>
 
-   
+   <!-- Div onde o nome da cerveja vai aparecer -->
    <div id="resultado"></div>            
 </body>   
 
 <script>
    function carregarDiv(){
       let divResultado = document.getElementById("resultado")
-      divResultado.innerHTML = `<h1>Guinness</h1>`
+      divResultado.innerHTML = `<h1 class="mydiv">Guinness</h1>`
+      
+      // força reflow para garantir que a transição seja aplicada
+      let elemento = divResultado.querySelector("h1")
+      requestAnimationFrame(() => {
+         elemento.classList.add("show")
+      })
    }
 
    let botao = document.getElementById("botaoCarregar")
