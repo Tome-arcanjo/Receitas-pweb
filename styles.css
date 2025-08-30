@@ -1,0 +1,7 @@
+.mydiv {
+  opacity: 0;
+  transition: opacity 2s;
+}
+.mydiv.show {
+  opacity: 1;
+}
