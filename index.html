@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>   
+  <head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">      
+    <style>
+      table {
+        border-collapse: collapse;
+        margin-top: 15px;
+        width: 300px;
+        font-family: Arial, sans-serif;
+      }
+      th, td {
+        border: 1px solid #333;
+        padding: 8px;
+        text-align: center;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      button {
+        margin: 5px;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        background-color: #4CAF50;
+        color: white;
+        font-weight: bold;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="meu amor">
+      <button id="botaoCarregar">Mostrar cervejas</button>
+      <button id="botaoOrdenar">Ordenar cervejas</button>
+      <button id="botaoEmbaralhar">Embaralhar cervejas</button>
+    </div>            
+  </body>   
+
+  <script>
+    let cervejas = ["Guiness", "Desperados", "Becks"]
+
+    function transformarTabela(lista) {
+      let linhas = lista.map(c => `<tr><td>${c}</td></tr>`).join("\n")
+      return `
+        <table>
+          <thead><tr><th>Cervejas</th></tr></thead>
+          <tbody>${linhas}</tbody>
+        </table>
+      `
+    }
+
+    function carregarTabela() {
+      let div = document.getElementById("meu amor")
+      div.innerHTML = `
+        <button id="botaoCarregar">Mostrar cervejas</button>
+        <button id="botaoOrdenar">Ordenar cervejas</button>
+        <button id="botaoEmbaralhar">Embaralhar cervejas</button>
+        ${transformarTabela(cervejas)}
+      `
+      ativarBotoes()
+    }
+
+    function ordenarCervejas() {
+      cervejas.sort()
+      carregarTabela()
+    }
+
+    function embaralharCervejas() {
+      cervejas.sort(() => Math.random() - 0.5)
+      carregarTabela()
+    }
+
+    function ativarBotoes() {
+      document.getElementById("botaoCarregar").addEventListener("click", carregarTabela)
+      document.getElementById("botaoOrdenar").addEventListener("click", ordenarCervejas)
+      document.getElementById("botaoEmbaralhar").addEventListener("click", embaralharCervejas)
+    }
+
+    // Ativar logo na primeira vez
+    ativarBotoes()
+  </script>
+</html>
