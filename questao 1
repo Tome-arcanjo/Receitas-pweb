@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>   
+<head>
+   <meta charset="UTF-8">      
+</head>
+<body>
+   <div><button id="botaoCarregar">Carregando cervejas...</button></div>
+   <div id="meu amor"></div>            
+</body>   
+
+<script>
+   let cervejas = ["Guiness", "Desperados", "Becks"]
+
+   // Função agora recebe o vetor como parâmetro
+   const carregarDiv = (cervs) => {
+      const div = document.getElementById("meu amor")
+      const cervejasHtml = cervs.map(c => `<h1>${c}</h1>`) 
+      div.innerHTML = `${cervejasHtml.join("\n")}`
+   }
+
+   let botao = document.getElementById("botaoCarregar")
+   // Passando o array cervejas como parâmetro na chamada
+   botao.addEventListener("click", () => carregarDiv(cervejas))                 
+</script>
+</html>
