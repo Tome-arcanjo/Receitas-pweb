@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>   
+  <head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">      
+    <style>
+      table {
+        border-collapse: collapse;
+        margin-top: 15px;
+        width: 300px;
+        font-family: Arial, sans-serif;
+      }
+      th, td {
+        border: 1px solid #333;
+        padding: 8px;
+        text-align: center;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      button {
+        margin: 5px;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        background-color: #8B0000; /* Vermelho escuro para combinar com whiskey */
+        color: white;
+        font-weight: bold;
+      }
+      button:hover {
+        background-color: #A52A2A; /* Marrom avermelhado no hover */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="meu amor">
+      <button id="botaoCarregar">Mostrar whiskeys</button>
+      <button id="botaoOrdenar">Ordenar whiskeys</button>
+      <button id="botaoEmbaralhar">Embaralhar whiskeys</button>
+    </div>            
+  </body>   
+
+  <script>
+    let whiskeys = ["Jack Daniels", "Jameson", "Chivas Regal", "Johnnie Walker", "Macallan"]
+
+    const transformarTabela = lista => {
+      let linhas = lista.map(w => `<tr><td>${w}</td></tr>`).join("\n")
+      return `
+        <table>
+          <thead><tr><th>Whiskeys</th></tr></thead>
+          <tbody>${linhas}</tbody>
+        </table>
+      `
+    }
+
+    const carregarTabela = () => {
+      let div = document.getElementById("meu amor")
+      div.innerHTML = `
+        <button id="botaoCarregar">Mostrar whiskeys</button>
+        <button id="botaoOrdenar">Ordenar whiskeys</button>
+        <button id="botaoEmbaralhar">Embaralhar whiskeys</button>
+        ${transformarTabela(whiskeys)}
+      `
+      ativarBotoes()
+    }
+
+    const ordenarWhiskeys = () => {
+      whiskeys.sort()
+      carregarTabela()
+    }
+
+    const embaralharWhiskeys = () => {
+      whiskeys.sort(() => Math.random() - 0.5)
+      carregarTabela()
+    }
+
+    const ativarBotoes = () => {
+      document.getElementById("botaoCarregar").addEventListener("click", carregarTabela)
+      document.getElementById("botaoOrdenar").addEventListener("click", ordenarWhiskeys)
+      document.getElementById("botaoEmbaralhar").addEventListener("click", embaralharWhiskeys)
+    }
+
+    // Ativar logo na primeira vez
+    ativarBotoes()
+  </script>
+</html>
